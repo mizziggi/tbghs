@@ -9,6 +9,7 @@
     :root {
       --burgundy: #6B1A2A;
       --burgundy-dark: #4A0F1C;
+      --mandala-brown: #321F0F;
       --gold: #C9A84C;
       --gold-light: #E8C97A;
       --gold-dark: #9A7A2E;
@@ -33,7 +34,7 @@
     /* ── MANDALA DIAGONAL GRID PATTERN ── */
     .mandala-bg {
       position: relative;
-      background-color: var(--burgundy-dark);
+      background-color: var(--mandala-brown);
       overflow: hidden;
     }
     .mandala-bg::before {
@@ -45,7 +46,7 @@
       background-size: 220px 220px;
       background-repeat: repeat;
       transform: rotate(-15deg) scale(1.3);
-      opacity: 0.18;
+      opacity: 0.10;
       z-index: 0;
     }
     .mandala-bg > * { position: relative; z-index: 1; }
@@ -552,7 +553,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--burgundy-dark);
+      background: var(--mandala-brown);
       border-top: 2px solid var(--gold-dark);
       padding: 3rem 2rem 1.5rem;
       position: relative;
@@ -566,7 +567,7 @@
       background-size: 200px 200px;
       background-repeat: repeat;
       transform: rotate(-15deg) scale(1.3);
-      opacity: 0.12;
+      opacity: 0.08;
     }
     footer > * { position: relative; z-index: 1; }
     .footer-inner {
