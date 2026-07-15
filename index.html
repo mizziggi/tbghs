@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The British Good Health Service</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --burgundy: #6B1A2A;
+      --burgundy-dark: #4A0F1C;
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dark: #9A7A2E;
+      --ivory: #F8F3E8;
+      --parchment: #EDE4CC;
+      --parchment-dark: #D9CCAA;
+      --cream: #FAF7F0;
+      --text-dark: #2C1810;
+      --text-mid: #4A3728;
+      --silver: #B8B8C0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── MANDALA DIAGONAL GRID PATTERN ── */
+    .mandala-bg {
+      position: relative;
+      background-color: var(--burgundy-dark);
+      overflow: hidden;
+    }
+    .mandala-bg::before {
+      content: '';
+      position: absolute;
+      inset: -60px;
+      background-image:
+        url('https://cdn.abacus.ai/images/b9d89041-a9d8-40a8-8182-735e97414d1b.png');
+      background-size: 220px 220px;
+      background-repeat: repeat;
+      transform: rotate(-15deg) scale(1.3);
+      opacity: 0.18;
+      z-index: 0;
+    }
+    .mandala-bg > * { position: relative; z-index: 1; }
+
+    /* ── GOLD DIVIDER ── */
+    .gold-rule {
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+    }
+    .gold-rule-thin {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dark), var(--gold), var(--gold-dark), transparent);
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 72px;
+      background: var(--burgundy-dark);
+      border-bottom: 2px solid var(--gold-dark);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      filter: drop-shadow(0 0 6px rgba(201,168,76,0.4));
+    }
+    .nav-logo-text {
+      font-family: 'Cinzel', serif;
+      color: var(--gold-light);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      line-height: 1.3;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--parchment);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+    .nav-links a:hover {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+    }
+    .hero-crest {
+      width: 180px;
+      height: auto;
+      filter: drop-shadow(0 4px 24px rgba(201,168,76,0.5));
+      margin-bottom: 2rem;
+      animation: fadeUp 1s ease both;
+    }
+    .hero-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+      animation: fadeUp 1s 0.4s ease both;
+    }
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem auto;
+      width: min(500px, 90%);
+      animation: fadeUp 1s 0.5s ease both;
+    }
+    .hero-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .hero-divider-line.right {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .hero-divider-diamond {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+    .hero-mission {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--parchment);
+      max-width: 680px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 1s 0.6s ease both;
+    }
+    .btn-primary {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--burgundy-dark);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+      padding: 0.9rem 2.5rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+      animation: fadeUp 1s 0.7s ease both;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.5);
+    }
+    .btn-outline {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      background: transparent;
+      padding: 0.85rem 2.5rem;
+      border: 1px solid var(--gold);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      margin-left: 1rem;
+    }
+    .btn-outline:hover {
+      background: rgba(201,168,76,0.1);
+      color: var(--gold-light);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      font-weight: 600;
+      color: var(--burgundy);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .section-lead {
+      font-size: 1.15rem;
+      color: var(--text-mid);
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+      font-style: italic;
+    }
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 1rem auto 2.5rem;
+    }
+    .ornament-line {
+      width: 80px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dark));
+    }
+    .ornament-line.right {
+      background: linear-gradient(90deg, var(--gold-dark), transparent);
+    }
+    .ornament-diamond {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    /* ── HERITAGE SECTION ── */
+    #heritage { background: var(--ivory); }
+    .heritage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .heritage-text h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: var(--burgundy);
+      margin-bottom: 1rem;
+    }
+    .heritage-text p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--text-mid);
+      margin-bottom: 1rem;
+    }
+    .heritage-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .heritage-crest-frame {
+      width: 260px; height: 260px;
+      border: 2px solid var(--gold-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--parchment);
+      position: relative;
+    }
+    .heritage-crest-frame::before,
+    .heritage-crest-frame::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border-color: var(--gold);
+      border-style: solid;
+    }
+    .heritage-crest-frame::before {
+      top: -6px; left: -6px;
+      border-width: 2px 0 0 2px;
+    }
+    .heritage-crest-frame::after {
+      bottom: -6px; right: -6px;
+      border-width: 0 2px 2px 0;
+    }
+    .heritage-crest-frame img {
+      width: 200px;
+      height: auto;
+    }
+
+    /* ── REFORMATION SECTION ── */
+    #reformation {
+      background: var(--parchment);
+      border-top: 1px solid var(--parchment-dark);
+      border-bottom: 1px solid var(--parchment-dark);
+    }
+    .reformation-quote {
+      background: var(--ivory);
+      border-left: 4px solid var(--gold);
+      padding: 2rem 2.5rem;
+      margin: 2rem auto;
+      max-width: 780px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--burgundy);
+      line-height: 1.7;
+      position: relative;
+    }
+    .reformation-quote::before {
+      content: '\201C';
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: 0.3;
+      position: absolute;
+      top: -1rem;
+      left: 1rem;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .pillar {
+      background: var(--ivory);
+      border: 1px solid var(--parchment-dark);
+      border-top: 3px solid var(--gold);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .pillar-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .pillar h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--burgundy);
+      margin-bottom: 0.75rem;
+    }
+    .pillar p {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ── INITIATIVES SECTION ── */
+    #initiatives { background: var(--cream); }
+    .initiatives-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .initiative-card {
+      background: var(--ivory);
+      border: 1px solid var(--parchment-dark);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .initiative-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--burgundy), var(--gold));
+    }
+    .initiative-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(107,26,42,0.12);
+    }
+    .initiative-number {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: var(--parchment-dark);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .initiative-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--burgundy);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    .initiative-card p {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .card-link {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-dark);
+      padding-bottom: 1px;
+    }
+
+    /* ── VALUES SECTION ── */
+    #values { background: var(--parchment); }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .value-item {
+      text-align: center;
+      padding: 2rem 1rem;
+      border: 1px solid var(--parchment-dark);
+      background: var(--ivory);
+    }
+    .value-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .value-item h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--burgundy);
+      margin-bottom: 0.5rem;
+    }
+    .value-item p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    /* ── LEGACY SECTION ── */
+    #legacy {
+      background: var(--ivory);
+      border-top: 1px solid var(--parchment-dark);
+    }
+    .legacy-text {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .legacy-text p {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: var(--text-mid);
+      margin-bottom: 1.25rem;
+    }
+    .legacy-names {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+    .legacy-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--burgundy);
+      border: 1px solid var(--gold-dark);
+      padding: 0.4rem 1rem;
+      background: var(--parchment);
+    }
+
+    /* ── DONATE / CTA SECTION ── */
+    #support {
+      background: var(--burgundy-dark);
+      text-align: center;
+      padding: 5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #support::before {
+      content: '';
+      position: absolute;
+      inset: -60px;
+      background-image: url('https://cdn.abacus.ai/images/b9d89041-a9d8-40a8-8182-735e97414d1b.png');
+      background-size: 200px 200px;
+      background-repeat: repeat;
+      transform: rotate(-15deg) scale(1.3);
+      opacity: 0.1;
+    }
+    #support > * { position: relative; z-index: 1; }
+    #support .section-eyebrow { color: var(--gold); }
+    #support .section-title { color: var(--ivory); }
+    #support .section-lead { color: var(--parchment); font-style: normal; }
+    .support-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--burgundy-dark);
+      border-top: 2px solid var(--gold-dark);
+      padding: 3rem 2rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: -60px;
+      background-image: url('https://cdn.abacus.ai/images/b9d89041-a9d8-40a8-8182-735e97414d1b.png');
+      background-size: 200px 200px;
+      background-repeat: repeat;
+      transform: rotate(-15deg) scale(1.3);
+      opacity: 0.12;
+    }
+    footer > * { position: relative; z-index: 1; }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+    }
+    .footer-brand img {
+      height: 80px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 8px rgba(201,168,76,0.3));
+    }
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: var(--parchment);
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+    .footer-motto {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: 1rem;
+    }
+    .footer-col h5 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--gold-dark);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col ul li a {
+      font-size: 0.9rem;
+      color: var(--parchment);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(201,168,76,0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: var(--parchment);
+      opacity: 0.7;
+    }
+    .footer-bottom a {
+      font-size: 0.8rem;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ── SUBPAGE OVERLAY ── */
+    .subpage-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(44,24,16,0.6);
+      z-index: 200;
+      backdrop-filter: blur(2px);
+    }
+    .subpage-panel {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(700px, 100vw);
+      height: 100vh;
+      background: var(--cream);
+      z-index: 201;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: -8px 0 40px rgba(44,24,16,0.3);
+    }
+    .subpage-panel.open { transform: translateX(0); }
+    .subpage-overlay.open { display: block; }
+    .subpage-header {
+      padding: 2rem 2.5rem 1.5rem;
+      border-bottom: 2px solid var(--gold-dark);
+      position: sticky;
+      top: 0;
+      background: var(--burgundy-dark);
+      z-index: 10;
+    }
+    .subpage-close {
+      position: absolute;
+      top: 1.25rem; right: 1.5rem;
+      background: none;
+      border: 1px solid var(--gold-dark);
+      color: var(--gold-light);
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .subpage-close:hover { background: rgba(201,168,76,0.15); }
+    .subpage-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .subpage-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--ivory);
+    }
+    .subpage-body {
+      padding: 2.5rem;
+    }
+    .subpage-body h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--burgundy);
+      margin: 2rem 0 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    .subpage-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-mid);
+      margin-bottom: 1rem;
+    }
+    .subpage-body ul {
+      margin: 0.5rem 0 1rem 1.5rem;
+    }
+    .subpage-body ul li {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      margin-bottom: 0.4rem;
+    }
+    .subpage-highlight {
+      background: var(--parchment);
+      border-left: 3px solid var(--gold);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--burgundy);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .heritage-grid { grid-template-columns: 1fr; }
+      .heritage-image { order: -1; }
+      .pillars { grid-template-columns: 1fr; }
+      .initiatives-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .values-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="https://cdn.abacus.ai/images/3f402d6e-d3c4-4ef1-b756-2b4a9830a9cb.png" alt="BGHS Crest"/>
+    <div class="nav-logo-text">The British Good<br>Health Service</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#heritage">Our Heritage</a></li>
+    <li><a href="#reformation">The Reformation</a></li>
+    <li><a href="#initiatives">Initiatives</a></li>
+    <li><a href="#values">Our Values</a></li>
+    <li><a href="#support">Support Us</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="mandala-bg">
+  <section class="hero">
+    <img class="hero-crest" src="https://cdn.abacus.ai/images/3f402d6e-d3c4-4ef1-b756-2b4a9830a9cb.png" alt="BGHS Crest"/>
+    <p class="hero-eyebrow">Established in Post-War Britain  ·  Reformed for a New Era</p>
+    <h1 class="hero-title">The British Good<br>Health Service</h1>
+    <p class="hero-subtitle">Scientia et Sapientia</p>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-diamond"></div>
+      <div class="hero-divider-line right"></div>
+    </div>
+    <p class="hero-mission">
+      Supporting public wellbeing through accessible health education, ethical partnerships,
+      community workshops, and trusted guidance — in an era shaped by misinformation,
+      digital communication, and changing social needs.
+    </p>
+    <div>
+      <a href="#initiatives" class="btn-primary">Discover Our Work</a>
+      <a href="#support" class="btn-outline">Support the Cause</a>
+    </div>
+  </section>
+</div>
+<div class="gold-rule"></div>
+
+<!-- ══ HERITAGE ══ -->
+<section id="heritage">
+  <div class="section-inner">
+    <p class="section-eyebrow">Est. Post-War Britain</p>
+    <h2 class="section-title">A Legacy of Public Service</h2>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+    <div class="heritage-grid">
+      <div class="heritage-text">
+        <h3>Where We Began</h3>
+        <p>
+          The British Good Health Service was founded in the years following the Second World War,
+          at a time when Britain was rebuilding not only its infrastructure, but the health and
+          spirit of its communities. Our founders — community doctors, nurses, educators, and
+          civic organisers — believed that good health was not a privilege, but a right.
+        </p>
+        <p>
+          In those early decades, the GHS rolled out government health initiatives to rural and
+          urban communities alike, teaching preventative education and promoting hygiene standards
+          through free and low-cost workshops. We were present in village halls, school classrooms,
+          and community centres across the nation.
+        </p>
+        <p>
+          As national healthcare systems evolved and the NHS grew, our direct operational role
+          changed — but our commitment to the common good never wavered. Today, we carry that
+          same founding spirit into a new era.
+        </p>
+        <br/>
+        <a href="#" class="card-link" onclick="openSubpage('heritage'); return false;">Read Our Full History →</a>
+      </div>
+      <div class="heritage-image">
+        <div class="heritage-crest-frame">
+          <img src="https://cdn.abacus.ai/images/3f402d6e-d3c4-4ef1-b756-2b4a9830a9cb.png" alt="BGHS Crest"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="gold-rule-thin"></div>
+
+<!-- ══ REFORMATION ══ -->
+<section id="reformation">
+  <div class="section-inner">
+    <p class="section-eyebrow">A New Chapter</p>
+    <h2 class="section-title">The Reformation</h2>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+    <div class="reformation-quote">
+      To support public wellbeing through accessible health education, ethical partnerships,
+      community workshops, and trusted guidance — in an era shaped by misinformation,
+      digital communication, and changing social needs.
+    </div>
+    <p class="section-lead">
+      Our strategic reformation modernises the structure and approach of the GHS while
+      preserving the legacy of trust and moral responsibility that has defined us for generations.
+    </p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">📜</div>
+        <h4>Preserving the Legacy</h4>
+        <p>Honouring the founding values of community service, trust, and moral responsibility that have guided us since post-war Britain.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🌐</div>
+        <h4>Embracing the Digital Age</h4>
+        <p>Modernising our delivery through online platforms, digital resources, QR-linked materials, and social media outreach.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🤝</div>
+        <h4>Ethical Partnerships</h4>
+        <p>Building relationships with schools, wellbeing groups, and ethical suppliers to extend our reach and deepen our impact.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="#" class="btn-primary" onclick="openSubpage('reformation'); return false;">Learn About the Reformation</a>
+    </div>
+  </div>
+</section>
+<div class="gold-rule-thin"></div>
+
+<!-- ══ INITIATIVES ══ -->
+<section id="initiatives">
+  <div class="section-inner">
+    <p class="section-eyebrow">What We Do</p>
+    <h2 class="section-title">Our Initiatives</h2>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+    <p class="section-lead">
+      Four pillars of action, each designed to address a distinct and urgent need in
+      Britain's public health landscape.
+    </p>
+    <div class="initiatives-grid">
+      <a href="#" class="initiative-card" onclick="openSubpage('trusted'); return false;">
+        <div class="initiative-number">01</div>
+        <h3>Trusted Information Campaigns</h3>
+        <p>Challenging health misinformation through evidence-based, accessible, and clearly communicated guidance — reaching communities where they are, in language they trust.</p>
+        <span class="card-link">Learn More →</span>
+      </a>
+      <a href="#" class="initiative-card" onclick="openSubpage('partnerships'); return false;">
+        <div class="initiative-number">02</div>
+        <h3>Ethical Community Partnerships</h3>
+        <p>Partnering with schools, wellbeing groups, and ethical suppliers to provide practical, affordable support for hygiene, food, and education across Britain.</p>
+        <span class="card-link">Learn More →</span>
+      </a>
+      <a href="#" class="initiative-card" onclick="openSubpage('openscience'); return false;">
+        <div class="initiative-number">03</div>
+        <h3>Open Science Education Initiative</h3>
+        <p>Expanding free medical and public health education through modernised digital resources, online platforms, and accessible social media content for all ages.</p>
+        <span class="card-link">Learn More →</span>
+      </a>
+      <a href="#" class="initiative-card" onclick="openSubpage('workshops'); return false;">
+        <div class="initiative-number">04</div>
+        <h3>Public Health Workshops</h3>
+        <p>Broader wellbeing programmes covering physical health, mental wellbeing, balanced living, and environmental responsibility — delivered in communities across the country.</p>
+        <span class="card-link">Learn More →</span>
+      </a>
+    </div>
+  </div>
+</section>
+<div class="gold-rule-thin"></div>
+
+<!-- ══ VALUES ══ -->
+<section id="values">
+  <div class="section-inner">
+    <p class="section-eyebrow">What We Stand For</p>
+    <h2 class="section-title">Our Values</h2>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-icon">⚖️</div>
+        <h4>Trust</h4>
+        <p>We earn and maintain the trust of the public through transparency, evidence, and honest communication.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🕊️</div>
+        <h4>Moral Responsibility</h4>
+        <p>We act in the interest of the common good, guided by ethics rather than profit or political agenda.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🏘️</div>
+        <h4>Community Service</h4>
+        <p>We serve every community — rural and urban, young and old — with equal dedication and care.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">📖</div>
+        <h4>Knowledge for All</h4>
+        <p>We believe that access to good health information is a right, not a privilege. Education is our instrument.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="gold-rule-thin"></div>
+
+<!-- ══ LEGACY ══ -->
+<section id="legacy">
+  <div class="section-inner">
+    <p class="section-eyebrow">In Honour Of</p>
+    <h2 class="section-title">Those Who Built the Legacy</h2>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+    <div class="legacy-text">
+      <p>
+        The British Good Health Service was not built by institutions alone. It was built by
+        the hands and hearts of ordinary people who believed in something greater than themselves —
+        community doctors who made house calls in the rain, nurses who taught hygiene in village
+        halls, teachers who wove health education into their lessons, and civic organisers who
+        gave their evenings to the wellbeing of their neighbours.
+      </p>
+      <p>
+        We carry their work forward. Every campaign we run, every workshop we deliver, every
+        partnership we forge is an act of remembrance and renewal — a promise that their legacy
+        will not be forgotten, but built upon.
+      </p>
+      <div class="legacy-names">
+        <span class="legacy-tag">Community Doctors</span>
+        <span class="legacy-tag">District Nurses</span>
+        <span class="legacy-tag">Health Educators</span>
+        <span class="legacy-tag">Civic Organisers</span>
+        <span class="legacy-tag">School Teachers</span>
+        <span class="legacy-tag">Volunteer Workers</span>
+        <span class="legacy-tag">Local Authorities</span>
+        <span class="legacy-tag">Wellbeing Advocates</span>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="gold-rule"></div>
+
+<!-- ══ SUPPORT / CTA ══ -->
+<section id="support">
+  <p class="section-eyebrow">Join the Cause</p>
+  <h2 class="section-title">Support the British Good Health Service</h2>
+  <div class="ornament" style="margin-bottom:1rem;">
+    <div class="ornament-line" style="background:linear-gradient(90deg,transparent,rgba(201,168,76,0.5));"></div>
+    <div class="ornament-diamond"></div>
+    <div class="ornament-line right" style="background:linear-gradient(90deg,rgba(201,168,76,0.5),transparent);"></div>
+  </div>
+  <p class="section-lead">
+    Whether you donate, volunteer, partner with us, or simply share our work —
+    every act of support helps us reach more communities and protect more lives.
+  </p>
+  <div class="support-buttons">
+    <a href="#" class="btn-primary" onclick="openSubpage('donate'); return false;">Make a Donation</a>
+    <a href="#" class="btn-outline" onclick="openSubpage('volunteer'); return false;">Volunteer With Us</a>
+    <a href="#" class="btn-outline" onclick="openSubpage('partner'); return false;">Become a Partner</a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<div class="mandala-bg">
+  <div class="gold-rule"></div>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="https://cdn.abacus.ai/images/3f402d6e-d3c4-4ef1-b756-2b4a9830a9cb.png" alt="BGHS Crest"/>
+        <p>The British Good Health Service is a registered charity dedicated to public wellbeing through education, community, and trust.</p>
+        <p class="footer-motto">Scientia et Sapientia</p>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="#heritage">Our Heritage</a></li>
+          <li><a href="#reformation">The Reformation</a></li>
+          <li><a href="#values">Our Values</a></li>
+          <li><a href="#legacy">Our Legacy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Initiatives</h5>
+        <ul>
+          <li><a href="#" onclick="openSubpage('trusted'); return false;">Information Campaigns</a></li>
+          <li><a href="#" onclick="openSubpage('partnerships'); return false;">Community Partnerships</a></li>
+          <li><a href="#" onclick="openSubpage('openscience'); return false;">Open Science Education</a></li>
+          <li><a href="#" onclick="openSubpage('workshops'); return false;">Public Health Workshops</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get Involved</h5>
+        <ul>
+          <li><a href="#" onclick="openSubpage('donate'); return false;">Donate</a></li>
+          <li><a href="#" onclick="openSubpage('volunteer'); return false;">Volunteer</a></li>
+          <li><a href="#" onclick="openSubpage('partner'); return false;">Partner With Us</a></li>
+          <li><a href="#" onclick="openSubpage('contact'); return false;">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 The British Good Health Service. All rights reserved. Registered Charity.</p>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══ SUBPAGE OVERLAY ══ -->
+<div class="subpage-overlay" id="subpageOverlay" onclick="closeSubpage()"></div>
+<div class="subpage-panel" id="subpagePanel">
+  <div class="subpage-header mandala-bg">
+    <button class="subpage-close" onclick="closeSubpage()">✕</button>
+    <p class="subpage-eyebrow" id="subpageEyebrow"></p>
+    <h2 class="subpage-title" id="subpageTitle"></h2>
+  </div>
+  <div class="subpage-body" id="subpageBody"></div>
+</div>
+
+<script>
+  const subpages = {
+    heritage: {
+      eyebrow: 'Est. Post-War Britain',
+      title: 'Our Full History',
+      body: `
+        <p>The British Good Health Service was founded in the years immediately following the Second World War, born from a national conviction that the health of the people was a matter of collective responsibility.</p>
+        <h3>The Founding Years (1945–1960)</h3>
+        <p>In the aftermath of war, Britain faced not only physical reconstruction but a profound public health challenge. Malnutrition, poor sanitation, and limited access to medical knowledge were widespread, particularly in rural communities. The GHS was established to bridge this gap — deploying trained health educators and community workers to villages, towns, and urban neighbourhoods across the country.</p>
+        <p>Working alongside the newly formed National Health Service, the GHS focused on what the NHS could not: preventative education, community engagement, and the human side of health. Our workers taught hygiene in school halls, distributed plain-language health guides, and ran free workshops on nutrition, childcare, and mental wellbeing.</p>
+        <h3>Growth and Influence (1960–1990)</h3>
+        <p>Through the 1960s and 70s, the GHS expanded its reach significantly. Partnerships with local authorities, schools, and trade unions allowed us to embed health education into the fabric of everyday British life. We produced some of the first accessible public health materials written in plain English, and pioneered community-led health campaigns that would later influence national policy.</p>
+        <div class="subpage-highlight">
+          "The GHS did not wait for people to come to health — it brought health to the people."
+        </div>
+        <h3>A Period of Transition (1990–2020)</h3>
+        <p>As the NHS matured and digital communication transformed society, the GHS's traditional model required rethinking. Funding structures changed, community networks shifted, and the rise of online health misinformation created new and urgent challenges. The organisation entered a period of careful reflection and internal review.</p>
+        <h3>The Reformation (2020–Present)</h3>
+        <p>Following a comprehensive strategic review, the GHS launched its Reformation — a modernisation of its structure, methods, and reach, while preserving the founding values of trust, community service, and moral responsibility. Today, the GHS is once again a growing force in British public health.</p>
+      `
+    },
+    reformation: {
+      eyebrow: 'A New Chapter',
+      title: 'The Reformation',
+      body: `
+        <p>The Reformation represents the most significant evolution in the history of the British Good Health Service — a deliberate, values-led modernisation designed to meet the challenges of the 21st century.</p>
+        <div class="subpage-highlight">
+          Our new purpose: to support public wellbeing through accessible health education, ethical partnerships, community workshops, and trusted guidance — in an era shaped by misinformation, digital communication, and changing social needs.
+        </div>
+        <h3>Why Reform Was Necessary</h3>
+        <p>The landscape of public health has changed dramatically. The rise of social media has democratised information — but also enabled the rapid spread of dangerous health misinformation. Communities are more connected digitally but sometimes more isolated socially. The GHS recognised that its traditional methods, while honourable, were no longer sufficient to meet these new realities.</p>
+        <h3>What Has Changed</h3>
+        <ul>
+          <li>A modernised governance structure with greater transparency and accountability</li>
+          <li>Investment in digital platforms, online resources, and social media outreach</li>
+          <li>New ethical partnership frameworks with schools, wellbeing organisations, and suppliers</li>
+          <li>Expanded workshop programmes covering mental health, environmental wellbeing, and balanced living</li>
+          <li>An Open Science Education Initiative making medical knowledge freely accessible</li>
+        </ul>
+        <h3>What Has Not Changed</h3>
+        <p>Our founding values remain unchanged: trust, moral responsibility, community service, and the belief that good health is a right for all — not a privilege for the few. The Reformation is not a departure from our past. It is a renewal of our promise to it.</p>
+      `
+    },
+    trusted: {
+      eyebrow: 'Initiative 01',
+      title: 'Trusted Information Campaigns',
+      body: `
+        <p>In an age of viral misinformation, the ability to access clear, honest, and evidence-based health information has never been more important — or more threatened.</p>
+        <h3>The Challenge</h3>
+        <p>Health misinformation spreads faster than ever before. From vaccine hesitancy to dangerous dietary advice, false health claims cause real harm to real people. Communities that are already underserved by traditional healthcare systems are often the most vulnerable to misinformation.</p>
+        <h3>Our Approach</h3>
+        <p>The GHS Trusted Information Campaigns are built on three principles:</p>
+        <ul>
+          <li><strong>Evidence-based:</strong> All content is reviewed by qualified health professionals and grounded in peer-reviewed research.</li>
+          <li><strong>Accessible:</strong> We write in plain English, use clear visuals, and translate materials into multiple languages where needed.</li>
+          <li><strong>Community-led:</strong> We work with trusted local voices — GPs, community nurses, teachers — to deliver information in ways that resonate.</li>
+        </ul>
+        <div class="subpage-highlight">
+          We do not simply correct misinformation. We build the health literacy that makes communities resilient to it.
+        </div>
+        <h3>Current Campaigns</h3>
+        <p>Our current campaign portfolio covers: seasonal health guidance, mental health awareness, nutrition and food safety, hygiene and infection prevention, and navigating online health information safely.</p>
+        <h3>Get Involved</h3>
+        <p>If you are a healthcare professional, educator, or community leader who would like to collaborate on a campaign, we would love to hear from you.</p>
+      `
+    },
+    partnerships: {
+      eyebrow: 'Initiative 02',
+      title: 'Ethical Community Partnerships',
+      body: `
+        <p>The GHS believes that lasting public health improvement requires deep, ethical, and mutually beneficial relationships with the communities and organisations we serve.</p>
+        <h3>Who We Partner With</h3>
+        <ul>
+          <li><strong>Schools and colleges:</strong> Embedding health education into curricula and extracurricular programmes</li>
+          <li><strong>Wellbeing organisations:</strong> Collaborating with mental health charities, sports clubs, and community groups</li>
+          <li><strong>Ethical suppliers:</strong> Sourcing hygiene, food, and wellness products from suppliers who share our values</li>
+          <li><strong>Local authorities:</strong> Working with councils to reach underserved communities</li>
+          <li><strong>NHS trusts and GP practices:</strong> Supporting preventative health messaging at the primary care level</li>
+        </ul>
+        <h3>Our Partnership Principles</h3>
+        <div class="subpage-highlight">
+          We will not partner with any organisation whose commercial interests conflict with public health. Our partnerships are built on shared values, not financial convenience.
+        </div>
+        <h3>Become a Partner</h3>
+        <p>We welcome partnership enquiries from organisations that share our commitment to public wellbeing. All prospective partners undergo an ethical review process to ensure alignment with our values and mission.</p>
+        <p>To begin a partnership conversation, please contact our Partnerships Team.</p>
+      `
+    },
+    openscience: {
+      eyebrow: 'Initiative 03',
+      title: 'Open Science Education Initiative',
+      body: `
+        <p>Knowledge is the foundation of good health. The Open Science Education Initiative exists to ensure that medical and public health knowledge is freely available to everyone — regardless of background, income, or location.</p>
+        <h3>What We Offer</h3>
+        <ul>
+          <li>Free online health education modules covering a wide range of topics</li>
+          <li>Plain-language summaries of key medical research and public health guidance</li>
+          <li>QR-linked physical materials for community spaces, GP waiting rooms, and schools</li>
+          <li>Social media content designed to educate and engage younger audiences</li>
+          <li>A growing digital library of health resources, freely downloadable</li>
+        </ul>
+        <h3>Our Philosophy</h3>
+        <div class="subpage-highlight">
+          Open science is not just about publishing data. It is about making knowledge genuinely usable by the people who need it most.
+        </div>
+        <h3>For Educators</h3>
+        <p>All of our educational materials are available for use by teachers, community educators, and healthcare professionals free of charge. We ask only that you credit the GHS and share any feedback that helps us improve.</p>
+        <h3>Coming Soon</h3>
+        <p>We are currently developing an interactive online learning platform that will allow users to complete structured health education programmes at their own pace, with certificates of completion available for key modules.</p>
+      `
+    },
+    workshops: {
+      eyebrow: 'Initiative 04',
+      title: 'Public Health Workshops',
+      body: `
+        <p>Since our founding, the workshop has been the heartbeat of the GHS. Face-to-face, community-based education remains one of the most powerful tools for lasting health behaviour change.</p>
+        <h3>What We Cover</h3>
+        <ul>
+          <li><strong>Physical Health:</strong> Nutrition, exercise, sleep, and preventative care</li>
+          <li><strong>Mental Wellbeing:</strong> Stress management, emotional resilience, and accessing support</li>
+          <li><strong>Balanced Living:</strong> Work-life balance, healthy relationships, and social connection</li>
+          <li><strong>Environmental Responsibility:</strong> The links between environmental health and personal wellbeing</li>
+          <li><strong>Digital Health Literacy:</strong> Navigating health information online safely and critically</li>
+        </ul>
+        <h3>How We Deliver</h3>
+        <p>Workshops are delivered in community centres, schools, workplaces, libraries, and faith spaces across Britain. We adapt our content and delivery style to suit each community's needs, and all workshops are offered free of charge or at a subsidised rate.</p>
+        <div class="subpage-highlight">
+          We go where the people are. No community is too small, too remote, or too hard to reach.
+        </div>
+        <h3>Request a Workshop</h3>
+        <p>If you would like to host a GHS workshop in your community, school, or workplace, please get in touch with our Workshops Team. We will work with you to design a programme that meets your community's specific needs.</p>
+      `
+    },
+    donate: {
+      eyebrow: 'Support Us',
+      title: 'Make a Donation',
+      body: `
+        <p>Your donation directly funds the work of the British Good Health Service — from the campaigns that counter misinformation, to the workshops that reach underserved communities, to the free educational resources we produce and distribute.</p>
+        <h3>How Your Donation Helps</h3>
+        <ul>
+          <li><strong>£10</strong> — Funds a set of plain-language health guides for a community space</li>
+          <li><strong>£25</strong> — Supports one participant through a full public health workshop programme</li>
+          <li><strong>£50</strong> — Helps us develop and publish a new online health education module</li>
+          <li><strong>£100</strong> — Funds a community information campaign reaching hundreds of households</li>
+        </ul>
+        <div class="subpage-highlight">
+          Every pound given to the GHS is a pound invested in the health of the British public.
+        </div>
+        <h3>Ways to Give</h3>
+        <p>We accept one-off donations and regular monthly giving. Regular donors help us plan ahead and sustain our programmes over the long term.</p>
+        <p>To make a donation, please contact us directly or visit our secure donation page (coming soon).</p>
+        <h3>Gift Aid</h3>
+        <p>If you are a UK taxpayer, we can claim Gift Aid on your donation — increasing its value by 25% at no extra cost to you.</p>
+      `
+    },
+    volunteer: {
+      eyebrow: 'Get Involved',
+      title: 'Volunteer With Us',
+      body: `
+        <p>The GHS has always been powered by people who care. Volunteering with us is one of the most direct ways to contribute to the health and wellbeing of your community.</p>
+        <h3>Volunteer Roles</h3>
+        <ul>
+          <li><strong>Workshop Facilitator:</strong> Help deliver our public health workshops in your local community</li>
+          <li><strong>Community Ambassador:</strong> Represent the GHS at local events and spread awareness of our work</li>
+          <li><strong>Digital Content Volunteer:</strong> Help us create and share health education content online</li>
+          <li><strong>Research and Writing Volunteer:</strong> Contribute to our plain-language health guides and campaign materials</li>
+          <li><strong>Administrative Support:</strong> Help keep our operations running smoothly behind the scenes</li>
+        </ul>
+        <div class="subpage-highlight">
+          You do not need to be a healthcare professional to volunteer with us. You need only a commitment to community and a willingness to learn.
+        </div>
+        <h3>What We Offer Volunteers</h3>
+        <p>All volunteers receive full training, ongoing support, and access to our network of health professionals and community partners. We also provide references for volunteers who have given significant time to the GHS.</p>
+        <h3>Apply to Volunteer</h3>
+        <p>To express your interest in volunteering, please contact our Volunteer Coordinator. We welcome applications from people of all backgrounds and experience levels.</p>
+      `
+    },
+    partner: {
+      eyebrow: 'Get Involved',
+      title: 'Become a Partner',
+      body: `
+        <p>Partnership with the GHS means joining a network of organisations committed to the health and wellbeing of the British public — guided by shared values rather than commercial interest.</p>
+        <h3>Types of Partnership</h3>
+        <ul>
+          <li><strong>Educational Partners:</strong> Schools, colleges, and universities who embed our resources into their programmes</li>
+          <li><strong>Community Partners:</strong> Charities, community groups, and faith organisations who host or co-deliver our workshops</li>
+          <li><strong>Supplier Partners:</strong> Ethical businesses who provide goods or services that support our mission</li>
+          <li><strong>Corporate Partners:</strong> Companies who support our work through funding, in-kind contributions, or employee volunteering</li>
+        </ul>
+        <div class="subpage-highlight">
+          We do not accept partnerships that compromise our independence or conflict with our public health mission.
+        </div>
+        <h3>The Partnership Process</h3>
+        <p>All prospective partners complete a brief values alignment review. This ensures that every organisation we work with shares our commitment to the public good. The process is straightforward and typically takes two to three weeks.</p>
+        <h3>Begin a Conversation</h3>
+        <p>If you believe your organisation shares our values and would like to explore a partnership, please contact our Partnerships Team. We look forward to hearing from you.</p>
+      `
+    },
+    contact: {
+      eyebrow: 'Get In Touch',
+      title: 'Contact Us',
+      body: `
+        <p>We welcome enquiries from members of the public, healthcare professionals, educators, community organisations, and anyone who shares our commitment to public health.</p>
+        <h3>General Enquiries</h3>
+        <p>For general questions about the GHS, our work, or how to get involved, please write to us at:</p>
+        <div class="subpage-highlight">
+          enquiries@bghs.org.uk<br/>
+          The British Good Health Service<br/>
+          London, United Kingdom
+        </div>
+        <h3>Specific Teams</h3>
+        <ul>
+          <li><strong>Workshops Team:</strong> workshops@bghs.org.uk</li>
+          <li><strong>Partnerships Team:</strong> partnerships@bghs.org.uk</li>
+          <li><strong>Volunteer Coordinator:</strong> volunteers@bghs.org.uk</li>
+          <li><strong>Press & Media:</strong> press@bghs.org.uk</li>
+        </ul>
+        <h3>Response Times</h3>
+        <p>We aim to respond to all enquiries within five working days. During busy periods, this may take a little longer — we appreciate your patience.</p>
+        <h3>Accessibility</h3>
+        <p>If you require our communications in an alternative format — including large print, audio, or a language other than English — please let us know and we will do our best to accommodate you.</p>
+      `
+    }
+  };
+
+  function openSubpage(key) {
+    const data = subpages[key];
+    if (!data) return;
+    document.getElementById('subpageEyebrow').textContent = data.eyebrow;
+    document.getElementById('subpageTitle').textContent = data.title;
+    document.getElementById('subpageBody').innerHTML = data.body;
+    document.getElementById('subpageOverlay').classList.add('open');
+    document.getElementById('subpagePanel').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSubpage() {
+    document.getElementById('subpageOverlay').classList.remove('open');
+    document.getElementById('subpagePanel').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeSubpage();
+  });
+</script>
+</body>
+</html>
