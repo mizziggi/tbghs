@@ -31,6 +31,23 @@
       overflow-x: hidden;
     }
 
+    /* ── CUSTOM SCROLLBAR (Velvety Feel) ── */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--parchment-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--burgundy);
+      border: 2px solid var(--parchment-dark);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--burgundy-dark);
+    }
+
+    
     /* ── MANDALA DIAGONAL GRID PATTERN ── */
     .mandala-bg {
       position: relative;
@@ -282,6 +299,51 @@
       transform: rotate(45deg);
     }
 
+
+    /* ── LATEST INSIGHTS (BLOGS) ── */
+    #insights { background: var(--cream); border-bottom: 1px solid var(--parchment-dark); }
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .article-card {
+      background: var(--ivory);
+      border: 1px solid var(--parchment-dark);
+      padding: 2rem;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(74,15,28,0.1);
+      border-color: var(--gold);
+    }
+    .article-date {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      color: var(--gold-dark);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .article-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--burgundy);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .article-card p {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    
     /* ── HERITAGE SECTION ── */
     #heritage { background: var(--ivory); }
     .heritage-grid {
@@ -637,98 +699,64 @@
       text-decoration: none;
     }
 
-    /* ── SUBPAGE OVERLAY ── */
+    /* ── MODAL OVERLAY (Centered) ── */
     .subpage-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(44,24,16,0.6);
+      background: rgba(20,10,5,0.85);
       z-index: 200;
-      backdrop-filter: blur(2px);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
     }
+    .subpage-overlay.open { display: flex; }
     .subpage-panel {
-      position: fixed;
-      top: 0; right: 0;
-      width: min(700px, 100vw);
-      height: 100vh;
+      position: relative;
+      width: min(850px, 100%);
+      max-height: 85vh;
       background: var(--cream);
-      z-index: 201;
-      overflow-y: auto;
-      transform: translateX(100%);
-      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-      box-shadow: -8px 0 40px rgba(44,24,16,0.3);
+      border: 1px solid var(--gold-dark);
+      box-shadow: 0 30px 100px rgba(0,0,0,0.8);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .subpage-panel.open { transform: translateX(0); }
-    .subpage-overlay.open { display: block; }
+    .subpage-panel.open { opacity: 1; transform: scale(1); }
     .subpage-header {
-      padding: 2rem 2.5rem 1.5rem;
-      border-bottom: 2px solid var(--gold-dark);
-      position: sticky;
-      top: 0;
+      padding: 2.5rem 3rem;
       background: var(--burgundy-dark);
-      z-index: 10;
+      border-bottom: 3px solid var(--gold);
+      position: relative;
     }
     .subpage-close {
-      position: absolute;
-      top: 1.25rem; right: 1.5rem;
-      background: none;
-      border: 1px solid var(--gold-dark);
-      color: var(--gold-light);
-      font-size: 1.2rem;
-      cursor: pointer;
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: 1px solid var(--gold); color: var(--gold);
+      width: 40px; height: 40px; cursor: pointer;
+      font-size: 1.2rem; transition: all 0.2s;
     }
-    .subpage-close:hover { background: rgba(201,168,76,0.15); }
-    .subpage-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
+    .subpage-close:hover { background: var(--gold); color: var(--burgundy-dark); }
+    .subpage-content {
+      padding: 3rem;
+      overflow-y: auto;
+      flex: 1;
+      /* Scrollbar inside modal */
+      scrollbar-width: thin;
+      scrollbar-color: var(--burgundy) var(--ivory);
     }
-    .subpage-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
-      color: var(--ivory);
-    }
-    .subpage-body {
-      padding: 2.5rem;
-    }
-    .subpage-body h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      color: var(--burgundy);
-      margin: 2rem 0 0.75rem;
-      letter-spacing: 0.05em;
-    }
-    .subpage-body p {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: var(--text-mid);
-      margin-bottom: 1rem;
-    }
-    .subpage-body ul {
-      margin: 0.5rem 0 1rem 1.5rem;
-    }
-    .subpage-body ul li {
-      font-size: 1rem;
-      line-height: 1.75;
-      color: var(--text-mid);
-      margin-bottom: 0.4rem;
-    }
-    .subpage-highlight {
-      background: var(--parchment);
-      border-left: 3px solid var(--gold);
-      padding: 1.25rem 1.5rem;
-      margin: 1.5rem 0;
-      font-style: italic;
-      color: var(--burgundy);
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
+    .subpage-content::-webkit-scrollbar { width: 8px; }
+    .subpage-content::-webkit-scrollbar-track { background: var(--ivory); }
+    .subpage-content::-webkit-scrollbar-thumb { background: var(--burgundy); }
+
+    .subpage-body h3 { font-family: 'Cinzel', serif; color: var(--burgundy); margin: 2rem 0 1rem; }
+    .subpage-body p { font-size: 1.1rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 1.25rem; }
+    .subpage-body ul { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+    .subpage-body li { font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-mid); }
+    .subpage-highlight { background: var(--parchment); border-left: 4px solid var(--gold); padding: 1.5rem; font-style: italic; margin: 2rem 0; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
